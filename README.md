@@ -1,3 +1,8 @@
+Teste de estudo, realmente é ilimitado a interação e o que dá para fazer com o python, realmente o significado de "A MAQUINA TRABALHANDO PARA NÓS "
+
+Marcos Rogerio Botelho Pavani 
+14996236447
+
 # Cadastro Automatizado de Clientes (Planilha → Site)
 
 Projeto de estudo que demonstra como automatizar o preenchimento de um
