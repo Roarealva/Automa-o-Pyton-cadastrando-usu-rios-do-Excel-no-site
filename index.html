@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Clientes</h1>
+
+        <form action="{{ url_for('cadastrar') }}" method="POST" class="form-cadastro">
+            <div class="campo">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Nome completo" required>
+            </div>
+            <div class="campo">
+                <label for="telefone">Telefone (WhatsApp)</label>
+                <input type="text" id="telefone" name="telefone" placeholder="11987654321" required>
+            </div>
+            <button type="submit" id="btn-cadastrar">Cadastrar</button>
+        </form>
+
+        <hr>
+
+        <div class="lista-header">
+            <h2>Clientes cadastrados ({{ clientes|length }})</h2>
+            {% if clientes %}
+            <form action="{{ url_for('limpar') }}" method="POST" onsubmit="return confirm('Excluir todos os clientes cadastrados?');">
+                <button type="submit" class="btn-limpar">Excluir todos</button>
+            </form>
+            {% endif %}
+        </div>
+
+        {% if clientes %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="lista-clientes">
+                {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.nome }}</td>
+                    <td>{{ cliente.telefone }}</td>
+                    <td>
+                        <form action="{{ url_for('excluir', indice=loop.index0) }}" method="POST">
+                            <button type="submit" class="btn-excluir">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="vazio">Nenhum cliente cadastrado ainda.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
